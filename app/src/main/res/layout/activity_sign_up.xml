@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingStart="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_back"
+            app:tint="@color/colorTextIcons" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/iniciar_sesi_n"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_15ssp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_90ssp"
+                android:layout_height="@dimen/_90ssp"
+                android:src="@mipmap/ic_logo_bg_foreground" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/necesitamos_algunos_detalles_para_crear_tu_cuenta"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/_15ssp"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_20sdp"
+                app:cardCornerRadius="@dimen/_4sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_4sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:fontFamily="@font/rubik"
+                        android:includeFontPadding="false"
+                        android:text="@string/nombre"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/_11sdp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/inputName"
+                        android:layout_height="wrap_content"
+                        android:height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/rubik"
+                        android:hint="@string/nombre_hint"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textColorHint="@color/colorHintText"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:fontFamily="@font/rubik"
+                        android:includeFontPadding="false"
+                        android:text="@string/apellido"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/_11sdp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/inputApellido"
+                        android:layout_height="wrap_content"
+                        android:height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/rubik"
+                        android:hint="@string/apellido_hint"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textColorHint="@color/colorHintText"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:fontFamily="@font/rubik"
+                        android:includeFontPadding="false"
+                        android:text="@string/correo_electronico"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/_11sdp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/inputEmail"
+                        android:layout_height="wrap_content"
+                        android:height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/rubik"
+                        android:hint="@string/correo_ejemplo_com"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textColorHint="@color/colorHintText"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:fontFamily="@font/rubik"
+                        android:includeFontPadding="false"
+                        android:text="@string/contrase_a"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/_11sdp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/inputPassword"
+                        android:layout_height="wrap_content"
+                        android:height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/rubik"
+                        android:hint="@string/password_hint"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textColorHint="@color/colorHintText"
+                        android:textSize="@dimen/_13ssp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:fontFamily="@font/rubik"
+                        android:includeFontPadding="false"
+                        android:text="@string/confirmar_contrase_a"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textSize="@dimen/_11sdp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/inputConfirmPassword"
+                        android:layout_height="wrap_content"
+                        android:height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/rubik"
+                        android:hint="@string/password_hint"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textColorHint="@color/colorHintText"
+                        android:textSize="@dimen/_13ssp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/rubik_bold"
+                android:includeFontPadding="false"
+                android:text="@string/registrarse"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintTop_toBottomOf="@id/cardSignIn"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/ya_tengo_una_cuenta"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/_13ssp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textSignIn"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textAllCaps="true"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/iniciar_sesi_n"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

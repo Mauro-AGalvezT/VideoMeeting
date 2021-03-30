@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">VideoMeeting</string>
+    <string name="bienvenido">!Bienvenido!</string>
+    <string name="video_meeting_conferencias_app">Video Meeting | Conferencias App</string>
+    <string name="inicia_sesi_n_en_tu_cuenta">Inicia sesión en tu cuenta</string>
+    <string name="correo_electronico">Correo Electronico</string>
+    <string name="correo_ejemplo_com">correo@ejemplo.com</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="password_hint">• • • • • •</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="crear_una_cuenta">Crear una cuenta</string>
+    <string name="no_tienes_una_cuenta">¿No tienes una cuenta?</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="necesitamos_algunos_detalles_para_crear_tu_cuenta">Necesitamos algunos detalles para crear tu cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="nombre_hint">Alejandro</string>
+    <string name="apellido">Apellido</string>
+    <string name="apellido_hint">Suarez</string>
+    <string name="confirmar_contrase_a">Confirmar Contraseña</string>
+    <string name="ya_tengo_una_cuenta">Ya tengo una cuenta</string>
 </resources>

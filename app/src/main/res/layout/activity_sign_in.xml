@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".SignInActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:id="@+id/layoutHeader"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_bold"
+                android:includeFontPadding="false"
+                android:text="@string/bienvenido"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="@dimen/_16ssp" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_90ssp"
+                android:layout_height="@dimen/_90ssp"
+                android:src="@mipmap/ic_logo_bg_foreground" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:fontFamily="@font/rubik_bold"
+                android:includeFontPadding="false"
+                android:text="@string/video_meeting_conferencias_app"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="@dimen/_16ssp"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textSignInLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/rubik"
+            android:includeFontPadding="false"
+            android:text="@string/inicia_sesi_n_en_tu_cuenta"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:layout_constraintTop_toBottomOf="@id/textSignInLabel">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_4sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:fontFamily="@font/rubik"
+                    android:includeFontPadding="false"
+                    android:text="@string/correo_electronico"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/_11sdp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/inputEmail"
+                    android:layout_height="wrap_content"
+                    android:height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@null"
+                    android:fontFamily="@font/rubik"
+                    android:hint="@string/correo_ejemplo_com"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorHintText"
+                    android:textSize="@dimen/_13ssp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/rubik"
+                    android:includeFontPadding="false"
+                    android:text="@string/contrase_a"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="@dimen/_11sdp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:id="@+id/inputPassword"
+                    android:layout_height="wrap_content"
+                    android:height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@null"
+                    android:fontFamily="@font/rubik"
+                    android:hint="@string/password_hint"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorHintText"
+                    android:textSize="@dimen/_13ssp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/rubik_bold"
+            android:includeFontPadding="false"
+            android:text="@string/iniciar_sesi_n"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintTop_toBottomOf="@id/cardSignIn"/>
+
+        <TextView
+            android:id="@+id/textNoAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/no_tienes_una_cuenta"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintTop_toBottomOf="@id/buttonSignIn" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textSignUp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:fontFamily="@font/rubik_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textAllCaps="true"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/registrarse"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textNoAccount"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
