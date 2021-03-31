@@ -1,8 +1,10 @@
-package com.galvez.videomeeting;
+package com.galvez.videomeeting.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.galvez.videomeeting.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,9 +1,11 @@
-package com.galvez.videomeeting;
+package com.galvez.videomeeting.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.galvez.videomeeting.R;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -15,5 +17,8 @@ public class SignInActivity extends AppCompatActivity {
         findViewById(R.id.textSignUp).setOnClickListener(v -> {
           startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
         });
+
+
+
     }
 }

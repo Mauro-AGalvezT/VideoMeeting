@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "352560350700",
+    "project_id": "video-meeting-4fbac",
+    "storage_bucket": "video-meeting-4fbac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352560350700:android:e7782dd2cfe9529ea4ecc9",
+        "android_client_info": {
+          "package_name": "com.galvez.videomeeting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352560350700-7q7o1pa7escetbs7tgojdmh76i21kbd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn0ibCTAkjh7IrkOD65UF4z95JS2tVPLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352560350700-7q7o1pa7escetbs7tgojdmh76i21kbd8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
