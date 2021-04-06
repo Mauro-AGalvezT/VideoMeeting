@@ -46,11 +46,14 @@ public class SignInActivity extends AppCompatActivity {
         btnSignIn=findViewById(R.id.buttonSignIn);
         btnSignIn.setOnClickListener(v -> {
             if(edtEmail.getText().toString().trim().isEmpty()) {
-                Toast.makeText(SignInActivity.this, "Ingrese su Email", Toast.LENGTH_SHORT).show();
+                edtEmail.setError("Ingrese su Email");
+                edtEmail.requestFocus();
             }else if(!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches()){
-                Toast.makeText(SignInActivity.this, "Ingrese un Email valido.", Toast.LENGTH_SHORT).show();
+                edtEmail.setError("Ingrese un Email valido");
+                edtEmail.requestFocus();
             }else if(edtpass.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignInActivity.this, "Ingrese su Contraseña", Toast.LENGTH_SHORT).show();
+                edtpass.setError("Ingrese su contraseña");
+                edtpass.requestFocus();
             }else{
                 signin();
             }

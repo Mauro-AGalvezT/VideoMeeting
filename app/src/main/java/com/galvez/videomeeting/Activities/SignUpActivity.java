@@ -49,19 +49,26 @@ public class SignUpActivity extends AppCompatActivity {
 
         buttonSignUp.setOnClickListener(v -> {
             if(inputFirstName.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Ingrese su nombre.", Toast.LENGTH_SHORT).show();
+                inputFirstName.setError("Campo requerido");
+                inputFirstName.requestFocus();
             }else if(inputLastName.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Ingrese su apellido.", Toast.LENGTH_SHORT).show();
+                inputLastName.setError("Campo requerido");
+                inputLastName.requestFocus();
             }else if(inputEmail.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Ingrese su Email.", Toast.LENGTH_SHORT).show();
+                inputEmail.setError("Campo requerido");
+                inputEmail.requestFocus();
             }else if(!Patterns.EMAIL_ADDRESS.matcher(inputEmail.getText().toString()).matches()){
-                Toast.makeText(SignUpActivity.this, "Ingrese un Email valido.", Toast.LENGTH_SHORT).show();
+                inputEmail.setError("Ingrese un correo valido");
+                inputEmail.requestFocus();
             }else if(inputPassword.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Ingrese una contraseña.", Toast.LENGTH_SHORT).show();
+                inputPassword.setError("Campo requerido");
+                inputPassword.requestFocus();
             }else if(inputConfirmPassword.getText().toString().trim().isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Confirma tu contraseña.", Toast.LENGTH_SHORT).show();
+                inputConfirmPassword.setError("Campo requerido");
+                inputConfirmPassword.requestFocus();
             }else if(!inputPassword.getText().toString().equals(inputConfirmPassword.getText().toString())){
-                Toast.makeText(SignUpActivity.this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
+                inputConfirmPassword.setError("Las contraseñas no coinciden");
+                inputConfirmPassword.requestFocus();
             }else {
                 signup();
             }
