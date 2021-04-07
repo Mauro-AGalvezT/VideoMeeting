@@ -18,4 +18,5 @@
     <string name="apellido_hint">Suarez</string>
     <string name="confirmar_contrase_a">Confirmar Contraseña</string>
     <string name="ya_tengo_una_cuenta">Ya tengo una cuenta</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
 </resources>
