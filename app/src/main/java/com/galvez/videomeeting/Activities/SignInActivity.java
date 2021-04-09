@@ -1,23 +1,21 @@
 package com.galvez.videomeeting.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.galvez.videomeeting.R;
 import com.galvez.videomeeting.Utilities.Constants;
 import com.galvez.videomeeting.Utilities.PreferenceManager;
 import com.galvez.videomeeting.databinding.ActivitySignInBinding;
-import com.galvez.videomeeting.databinding.ActivitySignUpBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -39,13 +37,9 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        binding.textSignUp.setOnClickListener(v -> {
-          startActivity(new Intent(getApplicationContext(),SignUpActivity.class));
-        });
+        binding.textSignUp.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignUpActivity.class)));
 
-        binding.buttonSignIn.setOnClickListener(v -> {
-            fieldValidation();
-        });
+        binding.buttonSignIn.setOnClickListener(v -> fieldValidation());
 
     }
     private void fieldValidation(){
@@ -88,9 +82,25 @@ public class SignInActivity extends AppCompatActivity {
                     }else  {
                         binding.signInProgressBar.setVisibility(View.INVISIBLE);
                         binding.buttonSignIn.setVisibility(View.VISIBLE);
-                        Toast.makeText(SignInActivity.this, "No se pudo acceder", Toast.LENGTH_SHORT).show();
+                        mostrarToast();
                     }
                 });
+    }
+
+    private void mostrarToast(){
+            LayoutInflater inflater=getLayoutInflater();
+            View layout= inflater.inflate(R.layout.custom_toast,
+                    (ViewGroup)findViewById(R.id.layout_base_1));
+
+            TextView textView=layout.findViewById(R.id.textToast);
+            textView.setText("Algo salio mal...");
+
+            Toast toast=new Toast(getApplicationContext());
+            toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.BOTTOM,0,200);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(layout);
+            toast.show();
+
     }
 
 }
