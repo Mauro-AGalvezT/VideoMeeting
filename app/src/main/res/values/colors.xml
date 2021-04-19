@@ -19,5 +19,8 @@
     <color name="colorBackground">#FAFAFA</color>
     <color name="colorHintText">#BDBDBD</color>
 
+    <color name="colorMeetingInvitationStart">#ff9800</color>
+    <color name="colorMeetingInvitationEnd">#F01BFF</color>
+
 
 </resources>

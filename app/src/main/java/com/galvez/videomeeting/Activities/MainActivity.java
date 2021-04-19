@@ -137,7 +137,10 @@ public class MainActivity extends AppCompatActivity implements UserListener {
         if(user.token==null || user.token.trim().isEmpty()){
             Toast.makeText(this, user.fistName+" "+user.lastName+" no se puede conectar", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this, "Video Meeting con "+user.fistName+" "+user.lastName, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(),OutgoingInvitationActivity.class);
+            intent.putExtra("user",user);
+            intent.putExtra("type","video");
+            startActivity(intent);
         }
     }
 

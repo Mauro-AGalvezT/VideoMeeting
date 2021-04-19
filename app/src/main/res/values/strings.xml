@@ -19,4 +19,6 @@
     <string name="confirmar_contrase_a">Confirmar Contraseña</string>
     <string name="ya_tengo_una_cuenta">Ya tengo una cuenta</string>
     <string name="cerrar_sesi_n">Cerrar Sesión</string>
+    <string name="invitaci_n_a_reunion_entrante">Invitación a reunion entrante</string>
+    <string name="enviar_invitacion">Contactando</string>
 </resources>
