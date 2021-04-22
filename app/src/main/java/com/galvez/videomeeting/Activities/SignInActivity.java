@@ -1,6 +1,7 @@
 package com.galvez.videomeeting.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.galvez.videomeeting.Utilities.PreferenceManager;
 import com.galvez.videomeeting.databinding.ActivitySignInBinding;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.rpc.context.AttributeContext;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -40,6 +42,16 @@ public class SignInActivity extends AppCompatActivity {
         binding.textSignUp.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(),SignUpActivity.class)));
 
         binding.buttonSignIn.setOnClickListener(v -> fieldValidation());
+
+        binding.btnChangeTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setTheme(R.style.Theme_MaterialComponents_Light_NoActionBar);
+                //setContentView(view);
+
+                SignInActivity.this.recreate();
+            }
+        });
 
     }
     private void fieldValidation(){
