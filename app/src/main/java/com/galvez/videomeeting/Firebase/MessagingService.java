@@ -2,6 +2,7 @@ package com.galvez.videomeeting.Firebase;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.galvez.videomeeting.Activities.IncomingInvitationActivity;
 import com.galvez.videomeeting.Utilities.Constants;
@@ -43,8 +44,25 @@ public class MessagingService extends FirebaseMessagingService {
                         remoteMessage.getData()
                                 .get(Constants.KEY_EMAIL)
                 );
+                intent.putExtra(
+                        Constants.REMOTE_MSG_INVITER_TOKEN,
+                        remoteMessage.getData()
+                                .get(Constants.REMOTE_MSG_INVITER_TOKEN)
+                );
+                intent.putExtra(
+                        Constants.REMOTE_MSG_INVITER_TOKEN,
+                        remoteMessage.getData()
+                                .get(Constants.REMOTE_MSG_INVITER_TOKEN)
+                );
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+            }else if (type.equals(Constants.REMOTE_MSG_INVITATION_RESPONSE)){
+                Intent intent=new Intent(Constants.REMOTE_MSG_INVITATION_RESPONSE);
+                intent.putExtra(
+                        Constants.REMOTE_MSG_INVITATION_RESPONSE,
+                        remoteMessage.getData().get(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+                );
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
             }
         }
 
