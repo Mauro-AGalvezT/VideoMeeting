@@ -39,8 +39,9 @@ import retrofit2.Response;
 public class OutgoingInvitationActivity extends AppCompatActivity {
 
     private PreferenceManager preferenceManager;
-    String meetingRoom=null;
+    private String meetingRoom=null;
     private String inviterToken = null;
+    private String meetingType=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +50,17 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         preferenceManager=new PreferenceManager(getApplicationContext());
 
         ImageView imageMeetingType = findViewById(R.id.imageMeetingType);
-        String meetringType = getIntent().getStringExtra("type");
+        meetingType = getIntent().getStringExtra("type");
 
-        if(meetringType!=null){
-            if(meetringType.equals("video")){
+        if(meetingType!=null){
+            if(meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
             }
+            else{
+                imageMeetingType.setImageResource(R.drawable.ic_call);
+            }
         }
+
         TextView textFirstChar = findViewById(R.id.textFirstCharO);
         TextView textUserName = findViewById(R.id.textUserNameO);
         TextView textEmail = findViewById(R.id.textEmailO);
@@ -77,8 +82,8 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
             if(task.isSuccessful()&&task.getResult()!=null){
                 inviterToken=task.getResult().getToken();
-                if(meetringType!=null && user !=null){
-                    initiateMeeting(meetringType,user.token);
+                if(meetingType!=null && user !=null){
+                    initiateMeeting(meetingType,user.token);
                 }
             }
         });
@@ -175,13 +180,15 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                 if (type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
                     try{
                         URL serverURL = new URL("https://meet.jit.si");
-                        JitsiMeetConferenceOptions conferenceOptions =
-                                new JitsiMeetConferenceOptions.Builder()
-                                        .setServerURL(serverURL)
-                                        .setWelcomePageEnabled(false)
-                                        .setRoom(meetingRoom)
-                                        .build();
-                        JitsiMeetActivity.launch(OutgoingInvitationActivity.this,conferenceOptions);
+
+                        JitsiMeetConferenceOptions.Builder builder=new JitsiMeetConferenceOptions.Builder();
+                        builder.setServerURL(serverURL);
+                        builder.setWelcomePageEnabled(false);
+                        builder.setRoom(meetingRoom);
+                        if (meetingType.equals("audio")){
+                            builder.setVideoMuted(true);
+                        }
+                        JitsiMeetActivity.launch(OutgoingInvitationActivity.this,builder.build());
                         finish();
                     }catch (Exception e){
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
