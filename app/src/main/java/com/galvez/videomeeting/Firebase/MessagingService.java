@@ -61,6 +61,7 @@ public class MessagingService extends FirebaseMessagingService {
                 );
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
             }else if (type.equals(Constants.REMOTE_MSG_INVITATION_RESPONSE)){
                 Intent intent=new Intent(Constants.REMOTE_MSG_INVITATION_RESPONSE);
                 intent.putExtra(

@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
+    android:id="@+id/userContainer"
+    android:animateLayoutChanges="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/_5sdp">
 
@@ -21,6 +23,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"/>
+    
+    <ImageView
+        android:id="@+id/imageSlected"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_user_icon"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/_3sdp"
+        android:src="@drawable/ic_round_done_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/textFirstChar"
+        app:layout_constraintEnd_toEndOf="@id/textFirstChar"
+        app:layout_constraintStart_toStartOf="@id/textFirstChar"
+        app:layout_constraintTop_toTopOf="@id/textFirstChar"
+        app:tint="@color/colorTextIcons" />
 
     <View
          android:id="@+id/viewSupporter"

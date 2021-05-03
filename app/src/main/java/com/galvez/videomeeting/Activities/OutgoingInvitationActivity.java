@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,17 +21,18 @@ import com.galvez.videomeeting.Network.ApiService;
 import com.galvez.videomeeting.R;
 import com.galvez.videomeeting.Utilities.Constants;
 import com.galvez.videomeeting.Utilities.PreferenceManager;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import retrofit2.Call;
@@ -42,6 +45,13 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
     private String meetingRoom=null;
     private String inviterToken = null;
     private String meetingType=null;
+
+    private TextView textFirstChar;
+    private TextView textUserName;
+    private TextView textEmail;
+
+    private ImageView imageStopInvitation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +71,9 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             }
         }
 
-        TextView textFirstChar = findViewById(R.id.textFirstCharO);
-        TextView textUserName = findViewById(R.id.textUserNameO);
-        TextView textEmail = findViewById(R.id.textEmailO);
+        textFirstChar = findViewById(R.id.textFirstCharO);
+        textUserName = findViewById(R.id.textUserNameO);
+        textEmail = findViewById(R.id.textEmailO);
 
         User user= (User) getIntent().getSerializableExtra("user");
         if (user!=null){
@@ -72,7 +82,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             textEmail.setText(user.email);
         }
 
-        ImageView imageStopInvitation = findViewById(R.id.imageStopInvitation);
+        imageStopInvitation = findViewById(R.id.imageStopInvitation);
         imageStopInvitation.setOnClickListener(v -> {
             if (user!=null){
                 cancelInvitation(user.token);
@@ -82,20 +92,45 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
             if(task.isSuccessful()&&task.getResult()!=null){
                 inviterToken=task.getResult().getToken();
-                if(meetingType!=null && user !=null){
-                    initiateMeeting(meetingType,user.token);
+
+                if (meetingType!=null){
+                    if (getIntent().getBooleanExtra("isMultiple",false)){
+                        Type type = new TypeToken<ArrayList<User>>(){}.getType();
+                        ArrayList<User> receivers = new Gson().fromJson(getIntent().getStringExtra("selectedUsers"),type);
+                        initiateMeeting(meetingType,null,receivers);
+                    }else{
+                        if(user !=null){
+                            initiateMeeting(meetingType,user.token,null);
+                        }
+                    }
+
                 }
+
             }
         });
 
 
     }
 
-    private void initiateMeeting(String meetingType, String receiverToken){
+    private void initiateMeeting(String meetingType, String receiverToken, ArrayList<User> receivers){
         try {
-
             JSONArray tokens= new JSONArray();
-            tokens.put(receiverToken);
+
+            if (receiverToken!=null){
+                tokens.put(receiverToken);
+            }
+
+            if(receivers!=null&&receivers.size()>0){
+                StringBuilder userNames=new StringBuilder();
+                for (int i = 0;i < receivers.size(); i++){
+                    tokens.put(receivers.get(i).token);
+                    userNames.append(receivers.get(i).fistName).append(" ").append(receivers.get(i).lastName).append("\n");
+                }
+                textFirstChar.setVisibility(View.GONE);
+                textEmail.setVisibility(View.GONE);
+                textUserName.setText(userNames.toString());
+            }
+
             JSONObject body = new JSONObject();
             JSONObject data = new JSONObject();
 
@@ -124,6 +159,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         ApiClient.getClient().create(ApiService.class).sendRemoteMessage(
                 Constants.getRemoteMessageHeards(),remoteMessageBody
         ).enqueue(new Callback<String>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 if(response.isSuccessful()){
@@ -163,7 +199,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             body.put(Constants.REMOTE_MSG_DATA,data);
             body.put(Constants.REMOTE_MSG_REGISTRATION_IDS,tokens);
 
-            sendRemoteMessage(body.toString(),Constants.REMOTE_MSG_INVITATION_CANCELLED);
+            sendRemoteMessage(body.toString(),Constants.REMOTE_MSG_INVITATION_RESPONSE);
 
         }catch (Exception exception){
             Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
@@ -171,7 +207,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
         }
     }
 
-    private BroadcastReceiver invitationResponseReceiver = new BroadcastReceiver(){
+    private final BroadcastReceiver invitationResponseReceiver = new BroadcastReceiver(){
 
         @Override
         public void onReceive(Context context, Intent intent) {

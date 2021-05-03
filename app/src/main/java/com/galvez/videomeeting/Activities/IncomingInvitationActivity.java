@@ -2,9 +2,14 @@ package com.galvez.videomeeting.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +33,8 @@ import retrofit2.Response;
 public class IncomingInvitationActivity extends AppCompatActivity {
 
     private String meetingType=null;
-    private TextView textCall;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +42,8 @@ public class IncomingInvitationActivity extends AppCompatActivity {
 
         ImageView imageMeetingType=findViewById(R.id.imageMeetingType);
         meetingType = getIntent().getStringExtra(Constants.REMOTE_MSG_MEETING_TYPE);
-        textCall=findViewById(R.id.textIncomingMeetingInvitation);
-        
+        TextView textCall = findViewById(R.id.textIncomingMeetingInvitation);
+
         if (meetingType!=null){
             if (meetingType.equals("video")){
                 imageMeetingType.setImageResource(R.drawable.ic_video);
@@ -141,5 +147,36 @@ public class IncomingInvitationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private final BroadcastReceiver invitationResponseReceiver = new BroadcastReceiver(){
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String type = intent.getStringExtra(Constants.REMOTE_MSG_INVITATION_RESPONSE);
+            if (type!=null){
+                if (type.equals(Constants.REMOTE_MSG_INVITATION_CANCELLED)){
+                    Toast.makeText(context, "Invitacion cancelada", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
+                invitationResponseReceiver,
+                new IntentFilter(Constants.REMOTE_MSG_INVITATION_RESPONSE)
+        );
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(
+                invitationResponseReceiver
+        );
     }
 }
